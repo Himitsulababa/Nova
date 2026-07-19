@@ -4,6 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NOVA — 노바 · K-pop universe</title>
+<meta name="theme-color" content="#0A0B1E" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="NOVA" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -2018,6 +2024,59 @@
   .free-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--cyan));border-radius:999px;transition:width .4s}
   @media(max-width:960px){.pd-grid,.cart-grid,.co-grid{grid-template-columns:1fr!important}.ed-grid{grid-template-columns:1fr!important}}
 
+  /* ============ NEWS: flöde + artikel ============ */
+  .news-feed{display:flex;flex-direction:column;gap:22px;max-width:760px;margin:0 auto}
+  .news-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg-2);
+    transition:transform .18s ease,border-color .18s ease}
+  .news-card:hover{border-color:var(--pink);transform:translateY(-2px)}
+  .news-img{position:relative;min-height:220px;display:grid;place-items:center}
+  .news-img .news-kr{font-family:var(--kr);font-weight:900;font-size:clamp(44px,9vw,72px);
+    color:rgba(255,255,255,.92);text-shadow:0 4px 30px rgba(0,0,0,.35)}
+  .news-tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.1em;text-transform:uppercase;background:rgba(10,11,30,.72);
+    border:1px solid var(--line);color:var(--ink);padding:5px 10px;border-radius:99px;backdrop-filter:blur(6px)}
+  .news-body{padding:20px 22px 22px}
+  .news-date{font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:.06em}
+  .news-body h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.6vw,23px);
+    line-height:1.22;margin:8px 0 10px}
+  .news-body p{color:var(--ink-dim);font-size:14px;line-height:1.6;margin-bottom:16px}
+  .news-sentinel{display:grid;place-items:center;padding:26px 0;min-height:60px}
+  .news-spin{width:26px;height:26px;border-radius:50%;border:3px solid var(--line);
+    border-top-color:var(--pink);animation:newsspin .8s linear infinite}
+  @keyframes newsspin{to{transform:rotate(360deg)}}
+  .news-end{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);letter-spacing:.08em}
+  /* artikelsidan */
+  .article{max-width:760px;margin:0 auto}
+  .article-hero{position:relative;min-height:240px;border-radius:18px;display:grid;place-items:center;
+    border:1px solid var(--line);overflow:hidden;margin-bottom:24px}
+  .article-hero .news-kr{font-family:var(--kr);font-weight:900;font-size:clamp(52px,10vw,84px);
+    color:rgba(255,255,255,.92);text-shadow:0 4px 30px rgba(0,0,0,.35)}
+  .article h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,4vw,34px);line-height:1.18;margin:6px 0 18px}
+  .article-body p{color:var(--ink);opacity:.92;font-size:15.5px;line-height:1.75;margin-bottom:18px}
+  .article-foot{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  @media (max-width:640px){ .news-img{min-height:180px} .news-body{padding:16px 16px 18px} }
+  /* news-badge i nav + rad i notispanelen */
+  .news-navdot{display:none;place-items:center;min-width:16px;height:16px;padding:0 4px;margin-left:6px;
+    border-radius:99px;background:var(--pink);color:#fff;font-family:var(--mono);
+    font-size:9.5px;font-weight:700;line-height:1;vertical-align:2px}
+  .notif-news-ic{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;
+    font-family:var(--kr);font-weight:900;font-size:12px;color:#fff;flex:none}
+  /* admin: publicera nyhet */
+  .news-admin{max-width:760px;margin:0 auto 22px}
+  .news-editor{margin-top:14px;border:1px solid var(--line);border-radius:18px;background:var(--bg-2);padding:20px}
+  .ne-row{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  .ne-gs{display:flex;gap:8px;flex-wrap:wrap}
+  .ne-g{width:36px;height:36px;border-radius:10px;border:2px solid transparent;cursor:pointer;
+    transition:transform .15s,border-color .15s}
+  .ne-g:hover{transform:scale(1.08)}
+  .ne-g.sel{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,46,147,.25)}
+  .ne-preview{pointer-events:none}
+  .ne-actions{display:flex;gap:10px;margin-top:4px}
+  .news-del{background:none;border:0;cursor:pointer;font-family:var(--mono);font-size:11px;
+    letter-spacing:.06em;color:var(--ink-dim);margin-left:12px;padding:8px 0}
+  .news-del:hover{color:#ff6b8a}
+  @media (max-width:640px){ .ne-row{grid-template-columns:1fr} }
+
 </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -2029,6 +2088,7 @@
       <a data-go="home" class="on">Hem</a>
       <a data-go="artists">Artister</a>
       <a data-go="pulse">Puls</a>
+      <a data-go="news">News<span class="news-navdot" id="news-navdot"></span></a>
       <a data-go="dance">Dance</a>
       <a data-go="shop">Shop</a>
       <a data-go="events">Event</a>
@@ -2658,6 +2718,67 @@
     <p>Nedräkning till nästa comeback och det senaste som händer i communityt — allt på ett ställe.</p>
   </div>
   <div id="pulse-content"></div>
+</div>
+
+<!-- ============================= NEWS ============================= -->
+<div class="page" id="p-news">
+  <div class="page-hero">
+    <span class="hero-kr">뉴스</span>
+    <h1>News <span class="grad">från K-pop-världen</span></h1>
+    <p>Comebacks, debuter, medlemsnytt och bransch — det senaste överst. Skrolla för mer.</p>
+    <button class="btn-sec" id="push-toggle" style="display:none">Slå på notiser 🔔</button>
+  </div>
+  <div class="news-admin" id="news-admin" style="display:none">
+    <button class="btn-pri" id="ne-open">+ Publicera nyhet</button>
+    <div class="news-editor" id="news-editor" style="display:none">
+      <div class="field"><label>Titel</label><input id="ne-title" maxlength="120" placeholder="WinWin lämnar NCT efter tio år" /></div>
+      <div class="ne-row">
+        <div class="field"><label>Tagg</label>
+          <select id="ne-tag">
+            <option>Nyhet</option><option>Release</option><option>Comeback</option>
+            <option>Debut</option><option>Solo</option><option>Medlemsnytt</option>
+            <option>Bransch</option><option>Turné</option>
+          </select>
+        </div>
+        <div class="field"><label>Koreansk text i bildytan</label><input id="ne-kr" maxlength="8" placeholder="뉴스" /></div>
+      </div>
+      <div class="field"><label>Gradient</label>
+        <div class="ne-gs" id="ne-gs">
+          <button class="ne-g g-1 sel" data-g="g-1" aria-label="Gradient 1"></button>
+          <button class="ne-g g-2" data-g="g-2" aria-label="Gradient 2"></button>
+          <button class="ne-g g-3" data-g="g-3" aria-label="Gradient 3"></button>
+          <button class="ne-g g-4" data-g="g-4" aria-label="Gradient 4"></button>
+          <button class="ne-g g-5" data-g="g-5" aria-label="Gradient 5"></button>
+          <button class="ne-g g-6" data-g="g-6" aria-label="Gradient 6"></button>
+          <button class="ne-g g-7" data-g="g-7" aria-label="Gradient 7"></button>
+        </div>
+      </div>
+      <div class="field"><label>Summary — kortets text</label><textarea id="ne-summary" rows="2" maxlength="240"></textarea></div>
+      <div class="field"><label>Brödtext</label><textarea id="ne-body" rows="7"></textarea>
+        <div class="hint">Tom rad = nytt stycke</div></div>
+      <div class="ne-row">
+        <div class="field"><label>Källa</label><input id="ne-src" placeholder="Forbes" /></div>
+        <div class="field"><label>Käll-URL</label><input id="ne-url" type="url" placeholder="https://…" /></div>
+      </div>
+      <div class="field"><label>Förhandsvisning</label><div class="ne-preview" id="ne-preview"></div></div>
+      <div class="ne-actions">
+        <button class="btn-pri" id="ne-publish">Publicera</button>
+        <button class="btn-sec" id="ne-cancel">Avbryt</button>
+      </div>
+    </div>
+  </div>
+  <div id="news-feed" class="news-feed"></div>
+  <div id="news-sentinel" class="news-sentinel"><span class="news-spin"></span></div>
+</div>
+
+<!-- =========================== ARTIKEL ============================ -->
+<div class="page" id="p-article">
+  <div class="crumb">
+    <a data-go="home">Hem</a><span class="sep">›</span>
+    <a data-go="news">News</a><span class="sep">›</span>
+    <span class="now" id="article-crumb">Artikel</span>
+  </div>
+  <div id="article-mount"></div>
 </div>
 
 <div class="page" id="p-dance">
@@ -5869,6 +5990,56 @@ const getE = id => EVENTS.find(e=>e.id===id) || (_tmCache && _tmCache.find(e=>e.
    ============================================================ */
 const GUARDED = ['profile','orders','tickets'];
 
+/* ============================================================
+   HASH-ROUTING — adressen följer sidan (#dance, #artist/blackpink)
+   ------------------------------------------------------------
+   Utan detta laddas alltid hemsidan om vid uppdatering, eftersom
+   hela NOVA är en fil och adressen aldrig ändrades.
+
+   VIKTIGT: Supabase skickar inloggningstokens i hashen
+   (#access_token=...&type=recovery). Sådana hashar innehåller '='
+   och ignoreras här — annars skulle vi kapa inloggningslänkarna.
+   ============================================================ */
+const DETAIL_PAGES = ['artist','product','event','thread','userprofile','article'];
+
+/* PUSH vs REPLACE — bakåtknappen ska fungera som på en vanlig sajt.
+   Bara navigering som användaren själv startar (klick på länk, kort,
+   notis, konversation) lägger en post i historiken. Interna anrop —
+   utloggning, omrendering, redirect efter köp — skriver bara över
+   adressen. userNav() är vakten: klicklyssnarna slår på flaggan
+   precis under sitt eget anrop, sen stängs den igen. */
+let NAV_PUSH = false;
+function userNav(fn){ NAV_PUSH = true; try{ fn(); } finally { NAV_PUSH = false; } }
+
+function setHash(h){
+  if(location.hash.slice(1) === h) return;
+  const url = h ? '#'+h : location.pathname + location.search;
+  try{ history[NAV_PUSH ? 'pushState' : 'replaceState'](null, '', url); }
+  catch(e){ /* äldre webbläsare: strunt samma */ }
+}
+
+function readHash(){
+  const raw = decodeURIComponent(location.hash.slice(1));
+  if(raw.indexOf('=') > -1) return null;           // auth-token, inte en sida
+  if(!raw) return { page: 'home', id: null };      // tom hash = hem (bakåt till start)
+  const cut = raw.indexOf('/');
+  return cut < 0 ? { page: raw, id: null }
+                 : { page: raw.slice(0, cut), id: raw.slice(cut + 1) };
+}
+
+function restoreFromHash(){
+  const r = readHash();
+  if(!r) return;
+  // Inloggningsskyddad sida: vänta tills sessionen är känd
+  if(GUARDED.indexOf(r.page) > -1 && !state.user) return;
+  const detail = { artist: openArtist, product: openProduct, event: openEvent,
+                   thread: openThread, userprofile: openUserProfile, article: openNewsArticle };
+  try{
+    if(detail[r.page] && r.id) detail[r.page](r.id);
+    else if(document.getElementById('p-' + r.page)) go(r.page);
+  }catch(e){ console.warn('[NOVA] kunde inte återställa', r, e); }
+}
+
 function go(page){
   if(GUARDED.includes(page) && !state.user){
     openAuth('login');
@@ -5886,14 +6057,17 @@ function go(page){
   if(page==='tickets')  renderTickets();
   if(page==='dance')    renderDance();
   if(page==='pulse')    renderPulse();
+  if(page==='news')     renderNews();
   if(page==='inbox')    renderInbox();
   if(page==='mod')      renderModQueue();
 
   $$('.page').forEach(p=>p.classList.remove('on'));
   el.classList.add('on');
+  if(DETAIL_PAGES.indexOf(page) < 0) setHash(page === 'home' ? '' : page);
   $$('.nav-links a').forEach(a=>a.classList.toggle('on', a.dataset.go===page));
   $('#um-drop').classList.remove('open');
   $('.nav').classList.remove('open');
+  const _np = $('#notif-panel'); if(_np) _np.classList.remove('open');
   window.scrollTo(0,0);
 }
 
@@ -5905,12 +6079,14 @@ document.addEventListener('click', e=>{
     closeListModal();
   }
   const g = e.target.closest('[data-go]');
-  if(g && !e.target.closest('[data-artist],[data-prod],[data-ev]')){ e.preventDefault(); go(g.dataset.go); return; }
-  const a = e.target.closest('[data-artist]'); if(a){ e.preventDefault(); openArtist(a.dataset.artist); return; }
-  const p = e.target.closest('[data-prod]');  if(p){ e.preventDefault(); openProduct(p.dataset.prod); return; }
-  const v = e.target.closest('[data-ev]');    if(v){ e.preventDefault(); openEvent(v.dataset.ev); return; }
-  const u = e.target.closest('[data-user]');  if(u){ e.preventDefault(); openUserProfile(u.dataset.user); return; }
-  const th = e.target.closest('[data-thread]'); if(th){ e.preventDefault(); openThread(th.dataset.thread); return; }
+  if(g && !e.target.closest('[data-artist],[data-prod],[data-ev]')){ e.preventDefault(); userNav(()=>go(g.dataset.go)); return; }
+  const a = e.target.closest('[data-artist]'); if(a){ e.preventDefault(); userNav(()=>openArtist(a.dataset.artist)); return; }
+  const p = e.target.closest('[data-prod]');  if(p){ e.preventDefault(); userNav(()=>openProduct(p.dataset.prod)); return; }
+  const v = e.target.closest('[data-ev]');    if(v){ e.preventDefault(); userNav(()=>openEvent(v.dataset.ev)); return; }
+  const u = e.target.closest('[data-user]');  if(u){ e.preventDefault(); userNav(()=>openUserProfile(u.dataset.user)); return; }
+  const th = e.target.closest('[data-thread]'); if(th){ e.preventDefault(); userNav(()=>openThread(th.dataset.thread)); return; }
+  const nd = e.target.closest('[data-news-del]'); if(nd){ e.preventDefault(); deleteNews(nd.dataset.newsDel); return; }
+  const nw = e.target.closest('[data-news]');   if(nw){ e.preventDefault(); userNav(()=>openNewsArticle(nw.dataset.news)); return; }
 });
 
 /* ============================================================
@@ -6124,6 +6300,7 @@ function openArtist(id){
   '</div></div>';
 
   go('artist');
+  setHash('artist/' + id);
 }
 
 /* ---- Medlemsmodal ---- */
@@ -6222,6 +6399,324 @@ function comebackCard(c){
       '<div class="cb-title">'+escapeHTML(c.title)+'</div>'+
       '<div class="cb-type">'+escapeHTML(c.type)+'</div>'+
     '</div></div>';
+}
+
+/* ============================================================
+   NEWS — oändligt flöde från Supabase-tabellen `news`
+   ------------------------------------------------------------
+   Hämtar sidor om NEWS_PAGE rader, nyast först. En osynlig
+   "sentinel" längst ner bevakas med IntersectionObserver —
+   när den syns hämtas nästa sida. Nya rader i tabellen
+   hamnar automatiskt överst nästa gång flödet laddas.
+   ============================================================ */
+/* ============================================================
+   NEWS-BADGE — "nytt sedan sist" i menyn
+   ------------------------------------------------------------
+   Senaste besöket på News sparas lokalt i webbläsaren
+   (localStorage, med try/catch — blockeras den funkar sajten
+   ändå, bara utan badge mellan besök). Antal nyare rader
+   räknas med en billig head-räkning mot Supabase: inga rader
+   hämtas, bara antalet. Första besöket sätter startpunkten
+   tyst — badgen betyder alltid "nytt sedan du var här sist".
+   ============================================================ */
+let newsSeen = null, newsUnseen = 0, _newsBadgeTimer = null;
+
+function loadNewsSeen(){
+  try{ newsSeen = localStorage.getItem('nova_news_seen'); }catch(e){ newsSeen = null; }
+  if(!newsSeen){ saveNewsSeen(); }   // första besöket: starta räkningen från nu
+}
+function saveNewsSeen(){
+  newsSeen = new Date().toISOString();
+  try{ localStorage.setItem('nova_news_seen', newsSeen); }catch(e){}
+}
+function setNewsBadge(n){
+  newsUnseen = n;
+  const d = $('#news-navdot'); if(!d) return;
+  if(n > 0){ d.textContent = n > 9 ? '9+' : n; d.style.display = 'inline-grid'; }
+  else d.style.display = 'none';
+}
+async function checkNewsBadge(){
+  if(!sb || !newsSeen) return;
+  try{
+    const { count, error } = await sb.from('news')
+      .select('id', { count: 'exact', head: true })
+      .gt('published_at', newsSeen);
+    if(!error) setNewsBadge(count || 0);
+  }catch(e){ /* nätverksmiss: försök igen vid nästa poll */ }
+}
+function startNewsBadge(){
+  loadNewsSeen();
+  if(sb) checkNewsBadge();
+  else setTimeout(checkNewsBadge, 3000);   // sb kan vara sen vid kallstart
+  if(_newsBadgeTimer) clearInterval(_newsBadgeTimer);
+  _newsBadgeTimer = setInterval(checkNewsBadge, 300000);
+}
+
+/* ============================================================
+   NEWS-ADMIN — publicera direkt från sajten
+   ------------------------------------------------------------
+   Formuläret syns bara för konton med role admin/moderator,
+   och Supabase-policyn är den riktiga vakten: även om någon
+   lyckas visa formuläret nekas insert utan rätt roll.
+   Förhandsvisningen renderas med samma newsCard-funktion som
+   flödet — det du ser är exakt det som publiceras.
+   ============================================================ */
+/* ============================================================
+   PUSH — prenumeration på riktiga notiser
+   ------------------------------------------------------------
+   Knappen på News-sidan visas bara om webbläsaren stödjer
+   push. Prenumerationen sparas i push_subscriptions och
+   Edge-funktionen send-push skickar utskicket vid publicering.
+   OBS iPhone: pushnotiser kräver att NOVA är installerad på
+   hemskärmen (iOS 16.4+) — i Safari-fliken göms knappen.
+   ============================================================ */
+const VAPID_PUBLIC_KEY = 'BFnbRNJarC1s_k3uOz6-DCc77AbhyT2AAqvIiA561Yp-PcC5n8GErpwMLEN4uwEVZG-r481L-gxYFUtdZKylmjA';
+
+function urlB64ToUint8(s){
+  const pad = '='.repeat((4 - s.length % 4) % 4);
+  const raw = atob((s + pad).replace(/-/g, '+').replace(/_/g, '/'));
+  const arr = new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++) arr[i] = raw.charCodeAt(i);
+  return arr;
+}
+
+function pushSupported(){
+  return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+}
+
+function setPushBtn(on){
+  const b = $('#push-toggle'); if(!b) return;
+  b.style.display = pushSupported() ? '' : 'none';
+  b.textContent = on ? 'Notiser på ✓ (tryck för att stänga av)' : 'Slå på notiser 🔔';
+}
+
+async function refreshPushBtn(){
+  if(!pushSupported()){ setPushBtn(false); return; }
+  try{
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription();
+    setPushBtn(!!sub);
+  }catch(e){ setPushBtn(false); }
+}
+
+async function togglePush(){
+  if(!pushSupported()){ toast('Din webbläsare stödjer inte pushnotiser', true); return; }
+  try{
+    const reg = await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if(sub){
+      if(sb) await sb.from('push_subscriptions').delete().eq('endpoint', sub.endpoint);
+      await sub.unsubscribe();
+      setPushBtn(false); toast('Notiser avstängda'); return;
+    }
+    const perm = await Notification.requestPermission();
+    if(perm !== 'granted'){ toast('Notiser blockerades av webbläsaren', true); return; }
+    sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlB64ToUint8(VAPID_PUBLIC_KEY)
+    });
+    const j = sub.toJSON();
+    const { error } = await sb.from('push_subscriptions').upsert(
+      { endpoint: sub.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth,
+        user_id: state.user ? state.user.id : null },
+      { onConflict: 'endpoint' }
+    );
+    if(error){ toast('Kunde inte spara prenumerationen', true); return; }
+    setPushBtn(true); toast('Notiser på! Du hör av oss 🔔');
+  }catch(e){
+    console.warn('[NOVA] push', e);
+    toast('Något gick fel med notiserna', true);
+  }
+}
+
+function neValues(){
+  const v = function(id){ return ($('#'+id).value || '').trim(); };
+  const gSel = document.querySelector('.ne-g.sel');
+  return {
+    id: '',
+    published_at: new Date().toISOString(),
+    title: v('ne-title'), summary: v('ne-summary'),
+    body: $('#ne-body').value.trim(),
+    source_name: v('ne-src'), source_url: v('ne-url'),
+    tag: $('#ne-tag').value, kr: v('ne-kr') || '뉴스',
+    g: gSel ? gSel.dataset.g : 'g-1'
+  };
+}
+
+function previewNews(){
+  const pv = $('#ne-preview'); if(!pv) return;
+  const n = neValues();
+  n.title = n.title || 'Din rubrik här';
+  n.summary = n.summary || 'Din summary dyker upp här medan du skriver.';
+  n.source_name = n.source_name || 'Källa';
+  pv.innerHTML = newsCard(n);
+}
+
+async function publishNews(){
+  if(!sb || !state.isMod) return;
+  const n = neValues();
+  if(!n.title || !n.summary || !n.body || !n.source_name || !n.source_url){
+    toast('Fyll i alla fält innan du publicerar', true); return;
+  }
+  if(n.source_url.indexOf('http') !== 0){
+    toast('Käll-URL:en måste börja med https://', true); return;
+  }
+  delete n.id;
+  const btn = $('#ne-publish'); btn.disabled = true;
+  const { data: newRow, error } = await sb.from('news').insert(n).select().single();
+  btn.disabled = false;
+  if(error){ toast('Kunde inte publicera: '+error.message, true); return; }
+  toast('Nyheten är publicerad!');
+  // pushutskick i bakgrunden — misslyckas det är nyheten ändå publicerad
+  try{
+    sb.functions.invoke('send-push', {
+      body: { title: n.title, summary: n.summary, article_id: newRow ? newRow.id : '' }
+    }).then(function(r){
+      if(r && r.data && typeof r.data.sent === 'number') toast('Push skickad till '+r.data.sent+' prenumeranter');
+    }).catch(function(e){ console.warn('[NOVA] send-push', e); });
+  }catch(e){ console.warn('[NOVA] send-push', e); }
+  ['ne-title','ne-kr','ne-summary','ne-body','ne-src','ne-url'].forEach(function(id){ $('#'+id).value=''; });
+  $('#news-editor').style.display = 'none';
+  renderNews();
+}
+
+async function deleteNews(id){
+  if(!sb || !state.isMod) return;
+  if(!confirm('Ta bort nyheten permanent?')) return;
+  const { error } = await sb.from('news').delete().eq('id', id);
+  if(error){ toast('Kunde inte ta bort: '+error.message, true); return; }
+  delete window._newsCache[id];
+  toast('Nyheten är borttagen');
+  renderNews();
+}
+
+function wireNewsEditor(){
+  const open = $('#ne-open'), ed = $('#news-editor');
+  if(!open || !ed) return;
+  open.addEventListener('click', function(){
+    ed.style.display = ed.style.display === 'none' ? '' : 'none';
+    if(ed.style.display !== 'none') previewNews();
+  });
+  $('#ne-cancel').addEventListener('click', function(){ ed.style.display = 'none'; });
+  $('#ne-publish').addEventListener('click', publishNews);
+  $('#ne-gs').addEventListener('click', function(e){
+    const b = e.target.closest('.ne-g'); if(!b) return;
+    $$('.ne-g').forEach(function(x){ x.classList.remove('sel'); });
+    b.classList.add('sel'); previewNews();
+  });
+  ['ne-title','ne-tag','ne-kr','ne-summary','ne-src'].forEach(function(id){
+    $('#'+id).addEventListener('input', previewNews);
+    $('#'+id).addEventListener('change', previewNews);
+  });
+  const pt = $('#push-toggle'); if(pt) pt.addEventListener('click', togglePush);
+}
+
+const NEWS_PAGE = 4;
+let newsOffset = 0, newsDone = false, newsBusy = false, newsObs = null;
+window._newsCache = window._newsCache || {};
+
+function fmtNewsDate(iso){
+  try{
+    return new Date(iso).toLocaleDateString('sv-SE', { day:'numeric', month:'long', year:'numeric' });
+  }catch(e){ return ''; }
+}
+
+function newsCard(n){
+  return '<article class="news-card">'+
+    '<div class="news-img '+escapeHTML(n.g||'g-1')+'">'+
+      '<span class="news-kr">'+escapeHTML(n.kr||'뉴스')+'</span>'+
+      '<span class="news-tag">'+escapeHTML(n.tag||'Nyhet')+'</span>'+
+    '</div>'+
+    '<div class="news-body">'+
+      '<span class="news-date">'+fmtNewsDate(n.published_at)+' · '+escapeHTML(n.source_name||'')+'</span>'+
+      '<h3>'+escapeHTML(n.title)+'</h3>'+
+      '<p>'+escapeHTML(n.summary)+'</p>'+
+      '<button class="btn-pri" data-news="'+escapeHTML(n.id)+'">Läs hela artikeln '+ICON.arrow+'</button>'+
+      (state.isMod ? '<button class="news-del" data-news-del="'+escapeHTML(n.id)+'">Ta bort</button>' : '')+
+    '</div>'+
+  '</article>';
+}
+
+function renderNews(){
+  const feed = $('#news-feed'), sent = $('#news-sentinel');
+  if(!feed) return;
+  saveNewsSeen();          // besöket räknas: badgen släcks
+  setNewsBadge(0);
+  const nb = $('#news-admin'); if(nb) nb.style.display = state.isMod ? '' : 'none';
+  refreshPushBtn();
+  // nollställ och ladda om från början — så syns nypublicerade nyheter direkt
+  feed.innerHTML = '';
+  sent.innerHTML = '<span class="news-spin"></span>';
+  newsOffset = 0; newsDone = false; newsBusy = false;
+  if(!sb){
+    feed.innerHTML = '<div class="note-box"><div><b>Kunde inte nå nyhetsservern.</b><br>Ladda om sidan och försök igen.</div></div>';
+    sent.innerHTML = '';
+    return;
+  }
+  loadMoreNews();
+  if(newsObs) newsObs.disconnect();
+  newsObs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting) loadMoreNews();
+  }, { rootMargin: '400px' });
+  newsObs.observe(sent);
+}
+
+async function loadMoreNews(){
+  if(newsBusy || newsDone || !sb) return;
+  newsBusy = true;
+  try{
+    const { data, error } = await sb.from('news')
+      .select('*')
+      .order('published_at', { ascending: false })
+      .range(newsOffset, newsOffset + NEWS_PAGE - 1);
+    if(error) throw error;
+    const feed = $('#news-feed'), sent = $('#news-sentinel');
+    (data||[]).forEach(function(n){ window._newsCache[n.id] = n; });
+    if(feed) feed.insertAdjacentHTML('beforeend', (data||[]).map(newsCard).join(''));
+    newsOffset += (data||[]).length;
+    if(!data || data.length < NEWS_PAGE){
+      newsDone = true;
+      if(newsObs) newsObs.disconnect();
+      if(sent) sent.innerHTML = newsOffset
+        ? '<span class="news-end">— du är helt ikapp —</span>'
+        : '<span class="news-end">Inga nyheter ännu.</span>';
+    }
+  }catch(e){
+    console.warn('[NOVA] news', e);
+    const sent = $('#news-sentinel');
+    if(sent) sent.innerHTML = '<span class="news-end">Kunde inte hämta fler nyheter.</span>';
+    newsDone = true;
+  }finally{
+    newsBusy = false;
+  }
+}
+
+async function openNewsArticle(id){
+  let n = window._newsCache[id];
+  if(!n && sb){
+    const { data } = await sb.from('news').select('*').eq('id', id).single();
+    n = data; if(n) window._newsCache[id] = n;
+  }
+  if(!n){ toast('Artikeln kunde inte hittas', true); return; }
+  const mount = $('#article-mount');
+  $('#article-crumb').textContent = n.title.length > 40 ? n.title.slice(0,40)+'…' : n.title;
+  mount.innerHTML = '<div class="article">'+
+    '<div class="article-hero '+escapeHTML(n.g||'g-1')+'">'+
+      '<span class="news-kr">'+escapeHTML(n.kr||'뉴스')+'</span>'+
+      '<span class="news-tag">'+escapeHTML(n.tag||'Nyhet')+'</span>'+
+    '</div>'+
+    '<span class="news-date">'+fmtNewsDate(n.published_at)+' · '+escapeHTML(n.source_name||'')+'</span>'+
+    '<h1>'+escapeHTML(n.title)+'</h1>'+
+    '<div class="article-body">'+
+      String(n.body||'').split(/\n\s*\n/).map(function(p){ return '<p>'+escapeHTML(p.trim())+'</p>'; }).join('')+
+    '</div>'+
+    '<div class="article-foot">'+
+      '<a class="btn-pri" href="'+escapeHTML(n.source_url)+'" target="_blank" rel="noopener">Läs originalartikeln hos '+escapeHTML(n.source_name)+' '+ICON.arrow+'</a>'+
+      '<button class="btn-sec" data-go="news">Tillbaka till News</button>'+
+    '</div>'+
+  '</div>';
+  go('article');
+  setHash('article/'+n.id);
 }
 
 async function renderPulse(){
@@ -6642,6 +7137,7 @@ function openProduct(id){
   sticky.innerHTML = '<span class="pd-sticky-price">'+kr(p.price)+'</span><button class="btn-pri" id="pd-sticky-add">'+ICON.cart+' Lägg i kundvagn</button>';
   sticky.style.display = 'none';
   go('product');
+  setHash('product/' + id);
 }
 
 function openProductZoom(pid){
@@ -6960,6 +7456,7 @@ function openEvent(id){
   $('#ev-mount').dataset.ev = e.id;
   if(!e.live) updateEvTotal();
   go('event');
+  setHash('event/' + id);
 }
 
 function updateEvTotal(){
@@ -7095,6 +7592,7 @@ async function openThread(id){
 
   if(state.user) applyAv($('#reply-avatar'), state.user.av);
   go('thread');
+  setHash('thread/' + id);
   await renderPosts(id);
 }
 
@@ -7130,6 +7628,7 @@ async function openUserProfile(userId){
   if(session && userId === session.id){ go('profile'); return; }
   $('#userprofile-mount').innerHTML = '<div class="thread-loading">Laddar profil…</div>';
   go('userprofile');
+  setHash('userprofile/' + userId);
   const prof = await NovaAuth.getProfile(userId);
   if(!prof){ $('#userprofile-mount').innerHTML = '<div class="empty"><h3>Profilen hittades inte</h3></div>'; return; }
   $('#up-crumb').textContent = prof.name;
@@ -8054,7 +8553,7 @@ function startSession(sess){
   startPresence();
   startNotifs();
   startInbox();
-  NovaAuth.isModerator(session).then(m=>{ state.isMod = m; const ml=$('#um-mod'); if(ml) ml.style.display = m?'':'none'; });
+  NovaAuth.isModerator(session).then(m=>{ state.isMod = m; const ml=$('#um-mod'); if(ml) ml.style.display = m?'':'none'; const nb=$('#news-admin'); if(nb) nb.style.display = m?'':'none'; });
   if(!alreadyOn) toast('Välkommen, '+p.name+'! 💗', true);
 }
 
@@ -8288,12 +8787,12 @@ document.addEventListener('click', e=>{
 
   // --- inbox / DM
   const convoRow = t.closest('[data-convo]');
-  if(convoRow){ openConvo(convoRow.dataset.convo, convoRow.dataset.name); return; }
+  if(convoRow){ userNav(()=>openConvo(convoRow.dataset.convo, convoRow.dataset.name)); return; }
   if(t.closest('#convo-back')){ _openConvo=null; renderInbox(); return; }
   if(t.closest('#convo-send')){ sendConvoMsg(); return; }
   if(t.closest('#inbox-login')){ openAuth('login'); return; }
   const dmBtn = t.closest('[data-dm]');
-  if(dmBtn){ openConvo(dmBtn.dataset.dm, dmBtn.dataset.name); return; }
+  if(dmBtn){ userNav(()=>openConvo(dmBtn.dataset.dm, dmBtn.dataset.name)); return; }
 
   // --- blockering
   const blockBtn = t.closest('[data-block]');
@@ -8319,7 +8818,7 @@ document.addEventListener('click', e=>{
   if(t.closest('#nav-bell')){ openNotifs(); return; }
   if(t.closest('#notif-read-all')){ NovaAuth.markNotificationsRead(session).then(()=>{ setBellBadge(0); $$('.notif-row').forEach(r=>r.classList.remove('unread')); }); return; }
   const nrow = t.closest('[data-notif]');
-  if(nrow){ const n=(window._notifCache||[])[+nrow.dataset.notif]; $('#notif-panel').classList.remove('open'); if(n) notifNav(n); return; }
+  if(nrow){ const n=(window._notifCache||[])[+nrow.dataset.notif]; $('#notif-panel').classList.remove('open'); if(n) userNav(()=>notifNav(n)); return; }
   // stäng notis-panel vid klick utanför
   if($('#notif-panel') && $('#notif-panel').classList.contains('open') && !t.closest('#notif-panel') && !t.closest('#nav-bell')){ $('#notif-panel').classList.remove('open'); }
   if(t.closest('#nav-search')){ openSearch(); return; }
@@ -9247,8 +9746,14 @@ async function openNotifs(){
   $('#notif-list').innerHTML = '<div class="notif-loading">Laddar…</div>';
   const notes = await NovaAuth.listNotifications(session, 20);
   window._notifCache = notes;
-  $('#notif-list').innerHTML = notes.length
-    ? notes.map((n,i)=>{
+  const newsRow = newsUnseen > 0
+    ? '<button class="notif-row unread" data-go="news">'+
+        '<div class="notif-av"><span class="notif-news-ic g-7">뉴스</span></div>'+
+        '<div class="notif-body"><span><b>News:</b> '+newsUnseen+' '+(newsUnseen===1?'ny nyhet':'nya nyheter')+' att läsa</span>'+
+        '<time>i flödet</time></div></button>'
+    : '';
+  $('#notif-list').innerHTML = (notes.length || newsRow)
+    ? newsRow + notes.map((n,i)=>{
         const av = {id:n.actor_avatar_id||1, kr:AV_KR[n.actor_avatar_id||1], img:n.actor_avatar_url||null};
         return '<button class="notif-row'+(n.read?'':' unread')+'" data-notif="'+i+'">'+
           '<div class="notif-av">'+avHTML(av,'sm no-dot')+'</div>'+
@@ -9334,7 +9839,11 @@ function init(){
     fs.innerHTML = chans.map(c=>'<a href="'+c[1]+'nova" target="_blank" rel="noopener noreferrer" aria-label="'+c[0]+'">'+ICON[c[0]]+'</a>').join('');
   }
   // återställ session om användaren redan är inloggad (efter mejllänk)
-  NovaAuth.currentSession().then(sess=>{ if(sess){ startSession(sess); } }).catch(()=>{});
+  NovaAuth.currentSession()
+    .then(sess=>{ if(sess) startSession(sess); })
+    .catch(()=>{})
+    .then(()=>{ restoreFromHash(); });   // skyddade sidor: nu vet vi om vi är inloggade
+  restoreFromHash();                      // öppna sidor: direkt, ingen väntan
   handleAuthRedirect();
   ['su-pass','np-pass'].forEach(id=>{
     const el = $('#'+id); if(!el) return;
@@ -9358,13 +9867,31 @@ function init(){
   renderCheckout();
   updateBadge();
   paintDraft();
+  startNewsBadge();
+  wireNewsEditor();
   $('#nav-user').style.display = 'none';
 }
 init();
 // säkerhetsnät: om slidern inte hann rendera, försök igen
+window.addEventListener('hashchange', function(){ restoreFromHash(); });
+
 window.addEventListener('load', function(){
   const m = document.getElementById('hero-slider');
   if(m && !m.children.length){ try{ renderHeroSlider(); }catch(e){ console.warn('[NOVA] slider retry', e); } }
+});
+
+/* ============================================================
+   PWA — service worker
+   Registreras efter load så den aldrig konkurrerar med sid-
+   laddningen. Misslyckas den (t.ex. lokal fil) händer inget:
+   sajten funkar exakt som vanligt, bara utan offline-stöd.
+   ============================================================ */
+window.addEventListener('load', function(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => reg.update())
+      .catch(e => console.warn('[NOVA] service worker kunde inte registreras', e));
+  }
 });
 
 })();
