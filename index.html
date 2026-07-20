@@ -2224,6 +2224,7 @@
   .chat-sw-hav{background:linear-gradient(135deg,#2DD4BF,#1E6091)}
   .chat-sw-solnedgang{background:linear-gradient(135deg,#FF8E3C,#FF2E93)}
   .chat-sw-custom{background:var(--bg-2);border-color:var(--line);font-size:14px;display:grid;place-items:center}
+  .ev-thumb{width:56px;height:56px;border-radius:12px;background-size:cover;background-position:center;flex:none;border:1px solid var(--line)}
   /* chatteman: färgar namnrutan + meddelandeytan */
   .chat-t-rosa .convo-head{background:linear-gradient(135deg,rgba(255,46,147,.28),rgba(123,44,191,.20))}
   .chat-t-rosa .convo-msgs{background:radial-gradient(circle at 15% 0%,rgba(255,46,147,.12),transparent 55%),
@@ -5875,7 +5876,7 @@ function buildHeroSlides(){
     .sort(function(a,b){ return a.dd-b.dd; })[0];
   if(cb){
     slides.push({
-      g: cb.g, tag: 'Comeback', kr: cb.kr,
+      g: cb.g, img: cb.img, tag: 'Comeback', kr: cb.kr,
       eyebrow: cb.artist,
       title: cb.title,
       desc: cb.type + ' \u00b7 ' + (cb.dd===0?'sl\u00e4pps idag':cb.dd===1?'sl\u00e4pps imorgon':'om '+cb.dd+' dagar'),
@@ -5887,7 +5888,7 @@ function buildHeroSlides(){
   const ev = EVENTS.filter(function(e){ return e.sold<100; })[0];
   if(ev){
     slides.push({
-      g: /^g-\d+$/.test(ev.g||'') ? ev.g : 'g-8', tag: 'Konsert', kr: ev.kr,
+      g: /^g-\d+$/.test(ev.g||'') ? ev.g : 'g-8', img: ev.img, tag: 'Konsert', kr: ev.kr,
       eyebrow: ev.venue + ', ' + ev.city,
       title: ev.t,
       desc: ev.wd + ' ' + ev.d + ' ' + ev.m + ' ' + ev.y + (ev.from?' \u00b7 fr\u00e5n '+kr(ev.from):''),
@@ -5923,6 +5924,7 @@ function renderHeroSlider(){
       const slide = slideEls[i];
       if(!slide) return;
       slide.className = 'hs-slide ' + sl.g;
+      slide.style.background = sl.img ? 'linear-gradient(rgba(10,11,30,.45),rgba(10,11,30,.55)), url("'+sl.img+'") center/cover no-repeat' : '';
       slide.setAttribute('data-slide-go', sl.go);
       const krEl = slide.querySelector('.hs-kr');
       if(krEl) krEl.textContent = sl.kr;
@@ -6039,13 +6041,13 @@ const PRODUCTS = [
 ];
 
 const EVENTS = [
-{id:'e1', d:'12', m:'MAR', y:'2026', wd:'Torsdag', t:'TIDES World Tour · Deep Blue', kr:'심해 투어', venue:'Avicii Arena', city:'Stockholm', from:695, artist:'TIDES', g:'g-tides', type:'concert', sold:92, doors:'18:00', start:'19:30',
+{id:'e1', img:'tides.png', d:'12', m:'MAR', y:'2026', wd:'Torsdag', t:'TIDES World Tour · Deep Blue', kr:'심해 투어', venue:'Avicii Arena', city:'Stockholm', from:695, artist:'TIDES', g:'g-tides', type:'concert', sold:92, doors:'18:00', start:'19:30',
  desc:'TIDES tar Deep Blue-turnén till Stockholm för en enda kväll. Full produktion, live-band och hela setlistan från albumet plus utvalda spår från Tidal Wave.',
  tiers:[{n:'VIP Soundcheck', kr:'브이아이피', s:'Inkl. soundcheck + signerad affisch', p:1495, out:false},{n:'Golvplats A', kr:'플로어', s:'Ståplats närmast scenen', p:995, out:false},{n:'Läktare B', kr:'좌석', s:'Numrerad sittplats', p:695, out:false},{n:'Ståplats bak', kr:'스탠딩', s:'Slutsåld', p:545, out:true}]},
-{id:'e2', d:'20', m:'MAR', y:'2026', wd:'Fredag', t:'HAERI Solodebut Showcase', kr:'쇼케이스', venue:'Cirkus', city:'Stockholm', from:495, artist:'HAERI', g:'g-haeri', type:'showcase', sold:76, doors:'18:30', start:'20:00',
+{id:'e2', img:'goldenhour.png', d:'20', m:'MAR', y:'2026', wd:'Fredag', t:'HAERI Solodebut Showcase', kr:'쇼케이스', venue:'Cirkus', city:'Stockholm', from:495, artist:'HAERI', g:'g-haeri', type:'showcase', sold:76, doors:'18:30', start:'20:00',
  desc:'En intim kväll med HAERI. Piano, gitarr och hela Golden Hour framförd live för första gången. Publiken sitter ner.',
  tiers:[{n:'Fanclub Front', kr:'팬클럽', s:'Första fem raderna · fanclub', p:895, out:false},{n:'Parkett', kr:'파켓', s:'Numrerad sittplats', p:695, out:false},{n:'Balkong', kr:'발코니', s:'Numrerad sittplats', p:495, out:false}]},
-{id:'e3', d:'04', m:'APR', y:'2026', wd:'Lördag', t:'AURORA Fanmeet · Winter Light', kr:'팬미팅', venue:'Annexet', city:'Stockholm', from:550, artist:'AURORA', g:'g-aurora', type:'fanmeet', sold:64, doors:'13:00', start:'14:00',
+{id:'e3', img:'winterlight.png', d:'04', m:'APR', y:'2026', wd:'Lördag', t:'AURORA Fanmeet · Winter Light', kr:'팬미팅', venue:'Annexet', city:'Stockholm', from:550, artist:'AURORA', g:'g-aurora', type:'fanmeet', sold:64, doors:'13:00', start:'14:00',
  desc:'Fanmeet med lekar, Q&A och akustiska versioner. Alla biljetter inkluderar ett exklusivt photocard. Signering lottas bland Fanclub-medlemmar.',
  tiers:[{n:'Signing Pass', kr:'사인회', s:'Inkl. lott till signering', p:1195, out:false},{n:'Front Section', kr:'앞줄', s:'Numrerad plats rad 1–10', p:795, out:false},{n:'Standard', kr:'일반', s:'Numrerad plats', p:550, out:false}]},
 {id:'e4', d:'18', m:'APR', y:'2026', wd:'Lördag', t:'KOSMO Orbit Live', kr:'궤도 라이브', venue:'Kulturbolaget', city:'Malmö', from:445, artist:'KOSMO', g:'g-kosmo', type:'concert', sold:38, doors:'19:00', start:'20:00',
@@ -6584,9 +6586,9 @@ function prodCard(p){
    har senare) nar du vill. Datumen ar i format AAAA-MM-DD.
    ============================================================ */
 const COMEBACKS = [
-  {date:'2026-07-25', artist:'AURORA', kr:'\uc624\ub85c\ub77c', title:'Winter Light (Repackage)', type:'Mini-album', g:'g-4'},
-  {date:'2026-08-02', artist:'TIDES', kr:'\ud0c0\uc774\uc988', title:'Deep Blue \u2014 Japanese Ver.', type:'Single', g:'g-8'},
-  {date:'2026-08-14', artist:'HAERI', kr:'\ud574\ub9ac', title:'Golden Hour, Pt. 2', type:'EP', g:'g-16'},
+  {date:'2026-07-25', artist:'AURORA', kr:'\uc624\ub85c\ub77c', title:'Winter Light (Repackage)', type:'Mini-album', g:'g-4', img:'winterlight.png'},
+  {date:'2026-08-02', artist:'TIDES', kr:'\ud0c0\uc774\uc988', title:'Deep Blue \u2014 Japanese Ver.', type:'Single', g:'g-8', img:'tides.png'},
+  {date:'2026-08-14', artist:'HAERI', kr:'\ud574\ub9ac', title:'Golden Hour, Pt. 2', type:'EP', g:'g-16', img:'goldenhour.png'},
   {date:'2026-08-29', artist:'KOSMO', kr:'\ucf54\uc2a4\ubaa8', title:'Orbit: Redux', type:'Studioalbum', g:'g-11'},
   {date:'2026-09-12', artist:'AURORA', kr:'\uc624\ub85c\ub77c', title:'World Tour \u2014 Nordic Encore', type:'Turn\u00e9', g:'g-1'}
 ];
@@ -6602,11 +6604,19 @@ function fmtDate(dateStr){
   return d.getDate() + ' ' + months[d.getMonth()];
 }
 
+/* Bild med mörk ton över gradienten — texten förblir läsbar.
+   Bilderna ligger i repots rot, bredvid index.html. */
+function bgImg(img, tone){
+  return img
+    ? ' style="background:linear-gradient(rgba(10,11,30,'+tone+'),rgba(10,11,30,'+tone+')), url(\''+img+'\') center/cover no-repeat"'
+    : '';
+}
+
 function comebackCard(c){
   const dd = daysUntil(c.date);
   const cd = dd < 0 ? 'Sl\u00e4ppt' : dd === 0 ? 'Idag!' : dd === 1 ? 'Imorgon' : 'om ' + dd + ' dagar';
   return '<div class="cb-card">'+
-    '<div class="cb-cov '+c.g+'"><span class="cb-kr">'+c.kr+'</span>'+
+    '<div class="cb-cov '+c.g+'"'+bgImg(c.img,'.35')+'><span class="cb-kr">'+c.kr+'</span>'+
       '<span class="cb-count'+(dd<=3&&dd>=0?' soon':'')+'">'+cd+'</span></div>'+
     '<div class="cb-body">'+
       '<div class="cb-date">'+fmtDate(c.date)+'</div>'+
@@ -7164,7 +7174,7 @@ async function renderPulse(){
   const nextUp = upcoming.find(function(c){ return c.dd>=0; });
 
   mount.innerHTML =
-    (nextUp ? '<section class="pulse-next '+nextUp.g+'">'+
+    (nextUp ? '<section class="pulse-next '+nextUp.g+'"'+bgImg(nextUp.img,'.5')+'>'+
       '<div class="pulse-next-inner">'+
         '<span class="pulse-next-lbl">N\u00e4sta comeback</span>'+
         '<div class="pulse-next-artist">'+escapeHTML(nextUp.artist)+' <span class="kr">'+nextUp.kr+'</span></div>'+
@@ -7877,6 +7887,7 @@ function renderCheckout(){
 function evCard(e){
   const soldOut = e.sold>=100;
   return '<div class="ev" data-ev="'+e.id+'">'+
+    (e.img ? '<div class="ev-thumb" style="background-image:url(\''+e.img+'\')"></div>' : '')+
     '<div class="ev-date"><b>'+e.d+'</b><span>'+e.m+'</span><em>'+e.wd+'</em></div>'+
     '<div class="ev-info"><h4>'+escapeHTML(e.t)+(e.live?' <span class="ev-live">LIVE</span>':'')+'</h4>'+
       '<div class="meta"><span class="kr">'+e.kr+'</span><span>'+ICON.pin+' '+e.venue+(e.city?', '+e.city:'')+'</span>'+
@@ -8016,7 +8027,7 @@ function openEvent(id){
 
   $('#ev-mount').innerHTML =
   '<div class="ed-grid"><div>'+
-    '<div class="ed-vis '+e.g+'"><span class="lbl live-tag"><span class="dot"></span>'+e.type.toUpperCase()+'</span><span class="kr">'+e.kr+'</span></div>'+
+    '<div class="ed-vis '+e.g+'"'+bgImg(e.img,'.20')+'><span class="lbl live-tag"><span class="dot"></span>'+e.type.toUpperCase()+'</span><span class="kr">'+e.kr+'</span></div>'+
     '<h1 style="font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.05;margin-bottom:14px">'+e.t+'</h1>'+
     '<div style="display:flex;gap:18px;flex-wrap:wrap;color:var(--ink-dim);font-size:14px;margin-bottom:26px">'+
       '<span>'+ICON.pin+' '+e.venue+(e.city?', '+e.city:'')+'</span>'+
